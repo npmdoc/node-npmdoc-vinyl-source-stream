@@ -1,17 +1,40 @@
 {
-    "buildNpmdoc":"vinyl-source-stream",
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "buildNpmdoc": "vinyl-source-stream",
+    "description": "api documentation for [vinyl-source-stream (v1.1.0)](https://github.com/hughsk/vinyl-source-stream) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-vinyl-source-stream.svg)](https://travis-ci.org/npmdoc/node-npmdoc-vinyl-source-stream)",
     "devDependencies": {
-        "vinyl-source-stream": "*",
         "electron-lite": "kaizhu256/node-electron-lite#alpha",
-        "utility2": "kaizhu256/node-utility2#alpha"
+        "utility2": "kaizhu256/node-utility2#alpha",
+        "vinyl-source-stream": "*"
     },
-    "name":"npmdoc-vinyl-source-stream",
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmdoc/node-npmdoc-vinyl-source-stream",
+    "keywords": [
+        "documentation",
+        "vinyl-source-stream"
+    ],
+    "license": "MIT",
+    "main": "lib.npmdoc_vinyl_source_stream.js",
+    "name": "npmdoc-vinyl-source-stream",
+    "nameAlias": "npmdoc_vinyl_source_stream",
+    "nameOriginal": "npmdoc-vinyl-source-stream",
+    "os": [
+        "darwin",
+        "linux"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/npmdoc/node-npmdoc-vinyl-source-stream.git"
     },
     "scripts": {
-        "build-ci": "utility2 shReadmeTest build_ci.sh"
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "(set -e; npm install \"kaizhu256/node-utility2#alpha\"; utility2 shDeployHeroku)",
+        "postinstall": "if [ -f npm_scripts.sh ]; then ./npm_scripts.sh postinstall; fi",
+        "start": "(set -e; export PORT=${PORT:-8080}; utility2 start test.js)",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
     },
     "version": "0.0.1"
 }
