@@ -54,12 +54,61 @@
 
     <li class="apidocModuleLi"><a href="#apidoc.module.vinyl-source-stream">module vinyl-source-stream</a><ol>
 
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.vinyl-source-stream.vinyl-source-stream">
+            function <span class="apidocSignatureSpan"></span>vinyl-source-stream
+            <span class="apidocSignatureSpan">(filename, baseDir)</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.vinyl-source-stream" id="apidoc.module.vinyl-source-stream">module vinyl-source-stream</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.vinyl-source-stream.vinyl-source-stream" id="apidoc.element.vinyl-source-stream.vinyl-source-stream">
+        function <span class="apidocSignatureSpan"></span>vinyl-source-stream
+        <span class="apidocSignatureSpan">(filename, baseDir)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">vinyl-source-stream = function (filename, baseDir) {
+  var ins = through2()
+  var out = false
+
+  var opts = {
+    contents: ins
+  }
+
+  if (filename) opts.path = path.resolve(baseDir || process.cwd(), filename)
+  if (baseDir) opts.base = baseDir
+
+  var file = new File(opts)
+
+  return through2({
+    objectMode: true
+  }, function(chunk, enc, next) {
+    if (!out) {
+      this.push(file)
+      out = true
+    }
+
+    ins.push(chunk)
+    next()
+  }, function() {
+    ins.push(null)
+    this.push(null)
+  })
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 </div>
 
